@@ -19,7 +19,7 @@ class SvgIcon extends HTMLElement {
 
 		style.textContent = `
 			svg {
-				transform: rotate(var(--r, 0deg)) scale(var(--tx, 1), var(--ty, 1)); 
+				transform: rotate(var(--r, 0deg)) scale(var(--sx, 1), var(--sy, 1)); 
 			}
 
 			path {
@@ -42,8 +42,8 @@ class SvgIcon extends HTMLElement {
 		svg.setAttribute('height', this.getAttribute('size') || defaults.size)
 		svg.setAttribute('viewBox', this.getAttribute('viewbox') || defaults.viewbox)
 
-		svg.style.setProperty('--tx', ['both', 'horizontal'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
-		svg.style.setProperty('--ty', ['both', 'vertical'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
+		svg.style.setProperty('--sx', ['both', 'horizontal'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
+		svg.style.setProperty('--sy', ['both', 'vertical'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
 
 		svg.style.setProperty('--r', this.getAttribute('rotate'))
 
@@ -69,8 +69,8 @@ class SvgIcon extends HTMLElement {
 				break
 
 			case 'flip':
-				svg.style.setProperty('--tx', ['both', 'horizontal'].includes(newValue.toLowerCase()) ? '-1' : '1')
-				svg.style.setProperty('--ty', ['both', 'vertical'].includes(newValue.toLowerCase()) ? '-1' : '1')
+				svg.style.setProperty('--sx', ['both', 'horizontal'].includes(newValue.toLowerCase()) ? '-1' : '1')
+				svg.style.setProperty('--sy', ['both', 'vertical'].includes(newValue.toLowerCase()) ? '-1' : '1')
 				break
 
 			case 'rotate':
