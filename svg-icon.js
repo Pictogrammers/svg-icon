@@ -1,11 +1,48 @@
-const defaults = {
-	size: 24,
-	viewbox: '0 0 24 24',
+const types = {
+	mdi: {
+		size: 24,
+		viewbox: '0 0 24 24',
+	},
+	'simple-icons': {
+		size: 24,
+		viewbox: '0 0 24 24',
+	},
+	default: {
+		size: 0,
+		viewbox: '0 0 0 0',
+	},
 }
 
 class SvgIcon extends HTMLElement {
 	static get observedAttributes() {
-		return ['path', 'viewbox', 'size', 'flip', 'rotate']
+		return ['type', 'path', 'size', 'viewbox', 'flip', 'rotate']
+	}
+
+	get defaults() {
+		return types[this.getAttribute('type')] || types.default
+	}
+
+	get size() {
+		return this.getAttribute('size') || this.defaults.size
+	}
+
+	get viewbox() {
+		return this.getAttribute('viewbox') || this.defaults.viewbox
+	}
+
+	get flip() {
+		const flip = this.getAttribute('flip').toLowerCase()
+		return {
+			x: ['both', 'horizontal'].includes(flip) ? '-1' : '1',
+			x: ['both', 'vertical'].includes(flip) ? '-1' : '1',
+		}
+	}
+
+	get rotate() {
+		const rotate = this.getAttribute('rotate')
+
+		if (!isNaN(rotate)) return rotate + 'deg'
+		return rotate
 	}
 
 	constructor(...args) {
@@ -38,14 +75,15 @@ class SvgIcon extends HTMLElement {
 		const svg = this.shadowRoot.querySelector('svg')
 		const path = this.shadowRoot.querySelector('path')
 
-		svg.setAttribute('width', this.getAttribute('size') || defaults.size)
-		svg.setAttribute('height', this.getAttribute('size') || defaults.size)
-		svg.setAttribute('viewBox', this.getAttribute('viewbox') || defaults.viewbox)
+		const flip = this.getAttribute('flip').toLowerCase()
 
-		svg.style.setProperty('--sx', ['both', 'horizontal'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
-		svg.style.setProperty('--sy', ['both', 'vertical'].includes(this.getAttribute('flip').toLowerCase()) ? '-1' : '1')
+		svg.setAttribute('width', this.size)
+		svg.setAttribute('height', this.size)
+		svg.setAttribute('viewBox', this.viewbox)
 
-		svg.style.setProperty('--r', this.getAttribute('rotate'))
+		svg.style.setProperty('--sx', this.flip.x)
+		svg.style.setProperty('--sy', this.flip.y)
+		svg.style.setProperty('--r', this.rotate)
 
 		path.setAttribute('d', this.getAttribute('path'))
 	}
@@ -55,26 +93,33 @@ class SvgIcon extends HTMLElement {
 		const path = this.shadowRoot.querySelector('path')
 
 		switch (name) {
+			case 'type':
+				// update all values that icon type affects
+				svg.setAttribute('width', this.size)
+				svg.setAttribute('height', this.size)
+				svg.setAttribute('viewBox', this.viewbox)
+				break
+
 			case 'path':
 				path.setAttribute('d', newValue)
 				break
 
-			case 'viewbox':
-				svg.setAttribute('viewBox', newValue || defaults.viewbox)
+			case 'size':
+				svg.setAttribute('width', this.size)
+				svg.setAttribute('height', this.size)
 				break
 
-			case 'size':
-				svg.setAttribute('width', newValue || defaults.size)
-				svg.setAttribute('height', newValue || defaults.size)
+			case 'viewbox':
+				svg.setAttribute('viewBox', this.viewbox)
 				break
 
 			case 'flip':
-				svg.style.setProperty('--sx', ['both', 'horizontal'].includes(newValue.toLowerCase()) ? '-1' : '1')
-				svg.style.setProperty('--sy', ['both', 'vertical'].includes(newValue.toLowerCase()) ? '-1' : '1')
+				svg.style.setProperty('--sx', this.flip.x)
+				svg.style.setProperty('--sy', this.flip.y)
 				break
 
 			case 'rotate':
-				svg.style.setProperty('--r', newValue)
+				svg.style.setProperty('--r', this.rotate)
 				break
 		}
 	}

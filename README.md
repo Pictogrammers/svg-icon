@@ -6,7 +6,9 @@ A basic webcomponent for rendering a single path SVG icon. This component makes 
 
 1. Install the package from NPM
 
-    // todo : publish to npm
+    ```
+    npm install @jamescoyle/svg-icon
+    ```
 
 2. Import the component into your application
 
