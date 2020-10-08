@@ -34,7 +34,7 @@ class SvgIcon extends HTMLElement {
 		const flip = this.getAttribute('flip').toLowerCase()
 		return {
 			x: ['both', 'horizontal'].includes(flip) ? '-1' : '1',
-			x: ['both', 'vertical'].includes(flip) ? '-1' : '1',
+			y: ['both', 'vertical'].includes(flip) ? '-1' : '1',
 		}
 	}
 
