@@ -1,0 +1,29 @@
+{
+	"name": "svg-icon",
+	"version": "1.0.0",
+	"description": "Icon webcomponent",
+	"main": "lib/svg-icon.vue",
+	"directories": {
+		"lib": "lib",
+		"test": "tests"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/JamesCoyle/svg-icon.git"
+	},
+	"keywords": [
+		"webcomponents",
+		"icon",
+		"mdi",
+		"pictogrammers"
+	],
+	"author": "Pictogrammers, James Coyle",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/JamesCoyle/svg-icon/issues"
+	},
+	"homepage": "https://github.com/JamesCoyle/svg-icon#readme"
+}
