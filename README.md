@@ -1,24 +1,25 @@
 # SVG Icon WebComponent
 
+[![](https://chips.james-coyle.now.sh/npm/version/@jamescoyle/svg-icon)](https://www.npmjs.com/package/@jamescoyle/svg-icon)
+[![](https://chips.james-coyle.now.sh/npm/downloads/@jamescoyle/svg-icon)](https://www.npmjs.com/package/@jamescoyle/svg-icon)
+
 A basic webcomponent for rendering a single path SVG icon. This component makes it easy to use SVG path based icon packs such as [MaterialDesignIcons](https://materialdesignicons.com/) and [SimpleIcons](https://simpleicons.org/).
 
 # Usage
 
 1. Install the package from NPM
-
     ```
     npm install @jamescoyle/svg-icon
     ```
 
 2. Import the component into your application
-
     ```
-    import 'svg-icon'
+    import '@jamescoyle/svg-icon'
     ```
 
 3. Use the icon in your markup
     ```
-    <svg-icon size="24" path="M...z"></svg-icon>
+    <svg-icon type="mdi" path="M...z"></svg-icon>
     ```
 
 # Attributes
