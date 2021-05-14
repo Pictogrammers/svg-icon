@@ -2,7 +2,7 @@
 	"name": "@jamescoyle/svg-icon",
 	"version": "0.1.0",
 	"description": "Icon webcomponent",
-	"main": "lib/svg-icon.vue",
+	"main": "lib/svg-icon.js",
 	"directories": {
 		"lib": "lib",
 		"test": "tests"
