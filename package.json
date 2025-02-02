@@ -1,14 +1,11 @@
 {
 	"name": "@jamescoyle/svg-icon",
-	"version": "0.1.1",
+	"version": "1.0.0",
 	"description": "Icon webcomponent",
 	"main": "lib/svg-icon.js",
+	"types": "lib/svg-icon.d.ts",
 	"directories": {
-		"lib": "lib",
-		"test": "tests"
-	},
-	"scripts": {
-		"test": "jest"
+		"lib": "lib"
 	},
 	"repository": {
 		"type": "git",
